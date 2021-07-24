@@ -15,6 +15,9 @@ public class Actions extends ApiService {
         this.stepData = stepData;
     }
 
+    /**
+     * Step definition that get authentication credentials as a {@link User}
+     */
     @When("I retrieve my authentication credentials")
     public void getUserCredentials() {
         RequestSpecification spec = getAuthContactsReqSpec(stepData.getToken());
@@ -27,6 +30,9 @@ public class Actions extends ApiService {
         stepData.setUser(user);
     }
 
+    /**
+     * Step definition that performs a logout from the API
+     */
     @When("I logout")
     public void logout() {
         RequestSpecification spec = getAuthContactsReqSpec(stepData.getToken());

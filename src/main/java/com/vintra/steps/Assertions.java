@@ -15,6 +15,9 @@ public class Assertions extends ApiService {
         this.stepData = stepData;
     }
 
+    /**
+     * Step definition that assert if the values of an authentication credentials are valid
+     */
     @Then("I should be able to check that my authentication credentials are valid")
     public void checkUserCredentials() {
         Assert.assertNotNull(stepData.getUser(), "Authentication credentials not found");
@@ -24,6 +27,9 @@ public class Assertions extends ApiService {
         Assert.assertFalse(stepData.getUser().isDisabled(), "A newly created user should be always enable by default");
     }
 
+    /**
+     * Step definition that assert if the get authentication credentials endpoint returns a HTTP 401 if the user has logged out
+     */
     @Then("I should receive an unauthorized response")
     public void checkUnauthorized() {
         RequestSpecification spec = getAuthContactsReqSpec(stepData.getToken());

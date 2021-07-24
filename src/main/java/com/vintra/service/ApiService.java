@@ -11,18 +11,44 @@ import io.restassured.specification.RequestSpecification;
 
 public class ApiService {
 
-    protected Response get(RequestSpecification spec,  String endpoint) {
+    /**
+     * Make a GET request to an specific endpoint
+     *
+     * @param spec     {@link RequestSpecification}
+     * @param endpoint URL
+     * @return {@link Response}
+     */
+    protected Response get(RequestSpecification spec, String endpoint) {
         return RestAssured.given().spec(spec).get(endpoint);
     }
 
-    protected Response put(RequestSpecification spec,  String endpoint) {
+    /**
+     * Make a PUT  request to an specific endpoint
+     *
+     * @param spec     {@link RequestSpecification}
+     * @param endpoint URL
+     * @return {@link Response}
+     */
+    protected Response put(RequestSpecification spec, String endpoint) {
         return RestAssured.given().spec(spec).put(endpoint);
     }
 
-    protected Response post(RequestSpecification spec,  String endpoint) {
+    /**
+     * Make a POST  request to an specific endpoint
+     *
+     * @param spec     {@link RequestSpecification}
+     * @param endpoint URL
+     * @return {@link Response}
+     */
+    protected Response post(RequestSpecification spec, String endpoint) {
         return RestAssured.given().spec(spec).post(endpoint);
     }
 
+    /**
+     * Get a basic {@link RequestSpecification} with out authentication
+     *
+     * @return {@link RequestSpecification}
+     */
     protected RequestSpecification getContactsReqSpec() {
         return new RequestSpecBuilder()
                 .setBaseUri(Constants.BASE_URI)
@@ -31,6 +57,12 @@ public class ApiService {
                 .filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
     }
 
+    /**
+     * Get an authenticated {@link RequestSpecification}
+     *
+     * @param token bearer token
+     * @return {@link RequestSpecification}
+     */
     protected RequestSpecification getAuthContactsReqSpec(String token) {
         return getContactsReqSpec().auth().oauth2(token);
     }

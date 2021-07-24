@@ -13,6 +13,13 @@ public class Conditions extends ApiService {
     public Conditions(StepData stepData) {
         this.stepData = stepData;
     }
+
+    /**
+     * Step definition to login a user with specific username and password
+     *
+     * @param username username
+     * @param password password
+     */
     @Given("That I am a logged in user with {string} as username and {string} as password")
     public void logInUser(String username, String password) {
         RequestSpecification spec = getContactsReqSpec()
